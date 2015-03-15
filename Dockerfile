@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 RUN apt-get update
 
 # Install sshd
-RUN apt-get install -y openssh-server
+RUN apt-get install -y openssh-server vim
 RUN mkdir /var/run/sshd
 
 # Set password to 'admin'
@@ -13,13 +13,15 @@ RUN printf admin\\nadmin\\n | passwd
 RUN apt-get install -y zlib1g-dev mysql-server mysql-client libmysqlclient-dev
 # Install Apache
 RUN apt-get install -y apache2
+ADD apache-config.conf /etc/apache2/httpd.conf
+#ADD info.php /var/www/info.php
 # Install php
 RUN apt-get install -y php5 libapache2-mod-php5 php5-mcrypt
 
 # Enable apache mods.
 RUN a2enmod php5
 RUN php5enmod mcrypt
-#RUN a2enmod rewrite
+RUN a2enmod rewrite
 
 # Install phpMyAdmin
 RUN mysqld & \

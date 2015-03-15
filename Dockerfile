@@ -16,6 +16,11 @@ RUN apt-get install -y apache2
 # Install php
 RUN apt-get install -y php5 libapache2-mod-php5 php5-mcrypt
 
+# Enable apache mods.
+RUN a2enmod php5
+RUN php5enmod mcrypt
+#RUN a2enmod rewrite
+
 # Install phpMyAdmin
 RUN mysqld & \
 	service apache2 start; \

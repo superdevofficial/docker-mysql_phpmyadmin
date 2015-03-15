@@ -1,8 +1,5 @@
-FROM ubuntu:12.04
+FROM ubuntu:14.04
 
-MAINTAINER Wei-Ming Wu <wnameless@gmail.com>
-
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
 
 # Install sshd
@@ -13,7 +10,7 @@ RUN mkdir /var/run/sshd
 RUN printf admin\\nadmin\\n | passwd
 
 # Install MySQL
-RUN apt-get install -y mysql-server mysql-client libmysqlclient-dev
+RUN apt-get install -y zlib1g-dev mysql-server mysql-client libmysqlclient-dev
 # Install Apache
 RUN apt-get install -y apache2
 # Install php

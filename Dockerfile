@@ -14,9 +14,10 @@ RUN apt-get install -y zlib1g-dev mysql-server mysql-client libmysqlclient-dev
 # Install Apache
 RUN apt-get install -y apache2
 ADD apache-config.conf /etc/apache2/httpd.conf
-#ADD info.php /var/www/info.php
+ADD html /var/www/html
 # Install php
 RUN apt-get install -y php5 libapache2-mod-php5 php5-mcrypt
+ADD php.ini /etc/php5/apache2/php.ini
 
 # Enable apache mods.
 RUN a2enmod php5
